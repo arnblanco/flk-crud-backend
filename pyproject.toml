@@ -1,16 +1,19 @@
 [tool.poetry]
-name = "prt-po"
+name = "crud-backend"
 version = "0.1.0"
 description = ""
 authors = ["AOBM <oblancomorales@gmail.com>"]
 readme = "README.md"
+packages = [{include = "crud_backend"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 django = "^5.1"
 psycopg2-binary = "^2.9.9"
-python-dotenv = "^1.0.1"
 django-configurations = "^2.5.1"
+djangorestframework = "^3.15.2"
+drf-yasg = "^1.21.7"
+requests = "2.32.3"
 
 [build-system]
 requires = ["poetry-core"]

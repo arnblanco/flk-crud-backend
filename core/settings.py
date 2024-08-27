@@ -1,14 +1,13 @@
 import os
-
 from pathlib import Path
 from configurations import Configuration
-from dotenv import load_dotenv
 
-# load .env
-load_dotenv()
-
-#Global Settings
+# Global Settings
 class Common(Configuration):
+    """
+    Configuración base común para todos los entornos.
+    """
+    
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,6 +21,9 @@ class Common(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'rest_framework',  # Django REST Framework para construir APIs
+        'drf_yasg',  # Herramienta para generar documentación de API con Swagger
+        '_apps.api',  # Aplicación personalizada del proyecto
     ]
     
     MIDDLEWARE = [
@@ -54,7 +56,7 @@ class Common(Configuration):
 
     WSGI_APPLICATION = 'core.wsgi.application'
 
-    # Loggin Configuration
+    # Configuración de Loggin para registrar errores
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -62,7 +64,7 @@ class Common(Configuration):
             'file': {
                 'level': 'ERROR',
                 'class': 'logging.FileHandler',
-                'filename': 'errors.log',
+                'filename': 'errors.log',  # Archivo donde se registran los errores
             },
         },
         'loggers': {
@@ -74,7 +76,7 @@ class Common(Configuration):
         },
     }
     
-    # Database
+    # Configuración de la Base de Datos usando PostgreSQL
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -84,12 +86,12 @@ class Common(Configuration):
             'HOST': os.getenv('POSTGRES_HOST', ''),
             'PORT': os.getenv('POSTGRES_PORT', ''),
             'OPTIONS': {
-                'options': '-c search_path=public'
+                'options': '-c search_path=public'  # Define el esquema por defecto
             },
         }        
     }
 
-    # Password validation
+    # Validación de contraseñas
     AUTH_PASSWORD_VALIDATORS = [
         {
             'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,22 +107,28 @@ class Common(Configuration):
         },
     ]
 
-
-    # Internationalization
+    # Internacionalización
     LANGUAGE_CODE = 'en-us'
     TIME_ZONE = 'UTC'
     USE_I18N = True
     USE_TZ = True
 
+    # Configuración de archivos estáticos
     STATIC_URL = 'static/'
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# DEVELOPERS settings extended to Common
+# Configuración para entornos de desarrollo
 class Dev(Common):
+    """
+    Configuración específica para el entorno de desarrollo.
+    """
     ALLOWED_HOSTS = []
-    DEBUG = True
+    DEBUG = True  # Habilita el modo de depuración
 
-# DEVELOPERS settings extended to Common
+# Configuración para entornos de producción
 class Prod(Common):
+    """
+    Configuración específica para el entorno de producción.
+    """
     ALLOWED_HOSTS = []
-    DEBUG = False
+    DEBUG = False  # Deshabilita el modo de depuración para producción
