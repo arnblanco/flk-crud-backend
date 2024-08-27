@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: crud-db
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - django_net
+
+  web:
+    container_name: crud-web
+    build: .
+    command: >
+      sh -c "poetry run python manage.py migrate &&
+            poetry run python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    networks:
+      - django_net
+
+volumes:
+  postgres_data:
+
+networks:
+  django_net:
