@@ -1,5 +1,7 @@
 import os
 import requests
+
+from datetime import datetime, timedelta
 from rest_framework import serializers
 from .models import Company
 
@@ -43,18 +45,22 @@ class CompanyReadFullSerializer(serializers.ModelSerializer):
         # Obtén el símbolo y la clave de API del entorno
         symbol = obj.symbol
         api_key = os.getenv('ALPHAVANTAGE_KEY', '')
+        end_date = datetime.now().strftime('%Y-%m-%d')
+        start_date = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
 
         # Crea la URL para la consulta de la API
-        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
+        url = f"https://api.polygon.io/v2/aggs/ticker/{symbol}/range/1/day/{start_date}/{end_date}?apiKey={api_key}"
 
         # Envía una solicitud GET a la API
-        response = requests.get(url)
-
-        # Analiza la respuesta JSON
-        data = response.json()
-
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+        except requests.exceptions.RequestException as e:
+            raise serializers.ValidationError(f"Error while contacting Alpha Vantage API: {str(e)}")
+        
         # Retorna los datos de la API
-        return data
+        return data['results'] if 'results' in data and data['results'] else []
 
 
 class CompanyWriteSerializer(serializers.ModelSerializer):
@@ -67,7 +73,7 @@ class CompanyWriteSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Company
-        fields = ['name', 'description', 'symbol']
+        fields = ['id', 'name', 'description', 'symbol']
 
     def validate_symbol(self, value):
         """
@@ -105,11 +111,11 @@ class CompanyWriteSerializer(serializers.ModelSerializer):
         Raises:
             serializers.ValidationError: Si ocurre un error al contactar la API o si la clave de API no está configurada.
         """
-        alphavantage_key = os.getenv('ALPHAVANTAGE_KEY', '')
-        if not alphavantage_key:
+        api_key = os.getenv('ALPHAVANTAGE_KEY', '')
+        if not api_key:
             raise serializers.ValidationError("API key for Alpha Vantage is not set.")
         
-        url = f'https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={alphavantage_key}'
+        url = f"https://api.polygon.io/v3/reference/tickers/{symbol}?apiKey={api_key}"
         
         try:
             response = requests.get(url)
@@ -119,7 +125,7 @@ class CompanyWriteSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(f"Error while contacting Alpha Vantage API: {str(e)}")
         
         # Retorna el JSON si existe y si es igual al símbolo ingresado.
-        return data if 'Symbol' in data and data['Symbol'] == symbol else None
+        return data['results'] if 'results' in data and data['results'] else None
 
     def create(self, validated_data):
         """

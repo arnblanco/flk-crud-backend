@@ -1,0 +1,13 @@
+
+Internal Server Error: /api/companies/cc9f58f3-12f8-4532-9f5c-cc24e7068252
+Traceback (most recent call last):
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/utils/deprecation.py", line 131, in __call__
+    response = self.process_response(request, response)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/companies/cc9f58f3-12f8-4532-9f5c-cc24e7068252/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+"PUT /api/companies/cc9f58f3-12f8-4532-9f5c-cc24e7068252 HTTP/1.1" 500 65363

@@ -13,7 +13,7 @@ class Common(Configuration):
 
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = os.getenv('SECRET_KEY', '')
-
+    ALLOWED_HOSTS = []
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
@@ -21,12 +21,14 @@ class Common(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'corsheaders', # Django Cors Headers
         'rest_framework',  # Django REST Framework para construir APIs
         'drf_yasg',  # Herramienta para generar documentación de API con Swagger
         '_apps.api',  # Aplicación personalizada del proyecto
     ]
     
     MIDDLEWARE = [
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -122,7 +124,8 @@ class Dev(Common):
     """
     Configuración específica para el entorno de desarrollo.
     """
-    ALLOWED_HOSTS = []
+    CORS_ALLOWED_ORIGINS = ['http://localhost:5173',]
+    ALLOWED_HOSTS = ['localhost']
     DEBUG = True  # Habilita el modo de depuración
 
 # Configuración para entornos de producción
