@@ -124,8 +124,8 @@ class Dev(Common):
     """
     Configuración específica para el entorno de desarrollo.
     """
-    CORS_ALLOWED_ORIGINS = ['http://localhost:5173',]
-    ALLOWED_HOSTS = ['localhost']
+    CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://flk-crud-frontend.up.railway.app',]
+    ALLOWED_HOSTS = ['localhost', 'flk-crud-backend.up.railway.app']
     DEBUG = True  # Habilita el modo de depuración
 
 # Configuración para entornos de producción
