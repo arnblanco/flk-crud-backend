@@ -39,5 +39,5 @@ COPY . /app/
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación
-#CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
-CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
+CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+#CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
