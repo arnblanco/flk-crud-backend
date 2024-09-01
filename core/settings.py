@@ -133,5 +133,6 @@ class Prod(Common):
     """
     Configuración específica para el entorno de producción.
     """
-    ALLOWED_HOSTS = []
+    CORS_ALLOWED_ORIGINS = ['https://flk-crud-frontend-production.up.railway.app',]
+    ALLOWED_HOSTS = ['flk-crud-backend-production.up.railway.app']
     DEBUG = False 
