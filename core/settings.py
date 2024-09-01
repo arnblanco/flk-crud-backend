@@ -116,7 +116,8 @@ class Common(Configuration):
     USE_TZ = True
 
     # Configuración de archivos estáticos
-    STATIC_URL = 'static/'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración para entornos de desarrollo
