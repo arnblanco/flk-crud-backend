@@ -5,7 +5,7 @@
       "buildCommand": "poetry install"
     },
     "deploy": {
-      "startCommand": "poetry run python manage.py migrate && poetry run python manage.py runserver 0.0.0.0 8000",
+      "startCommand": "poetry run python manage.py migrate && poetry run python manage.py runserver 0.0.0.0 $PORT",
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     }
