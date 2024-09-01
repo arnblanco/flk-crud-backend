@@ -57,7 +57,9 @@ class CompanyReadFullSerializer(serializers.ModelSerializer):
             response.raise_for_status()
             data = response.json()
         except requests.exceptions.RequestException as e:
-            raise serializers.ValidationError(f"Error while contacting Alpha Vantage API: {str(e)}")
+            error_response = e.response.json()
+            response_message = f"{error_response['status']}: {error_response['message']}"
+            raise serializers.ValidationError(response_message)
         
         # Retorna los datos de la API
         return data['results'] if 'results' in data and data['results'] else []
@@ -116,14 +118,17 @@ class CompanyWriteSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("API key for Alpha Vantage is not set.")
         
         url = f"https://api.polygon.io/v3/reference/tickers/{symbol}?apiKey={api_key}"
+        print( url )
         
         try:
             response = requests.get(url)
             response.raise_for_status()
             data = response.json()
         except requests.exceptions.RequestException as e:
-            raise serializers.ValidationError(f"Error while contacting Alpha Vantage API: {str(e)}")
-        
+            error_response = e.response.json()
+            response_message = f"{error_response['status']}: {error_response['message']}"
+            raise serializers.ValidationError(response_message)
+
         # Retorna el JSON si existe y si es igual al símbolo ingresado.
         return data['results'] if 'results' in data and data['results'] else None
 

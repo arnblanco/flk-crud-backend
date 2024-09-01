@@ -11,3 +11,167 @@ Traceback (most recent call last):
     raise RuntimeError(
 RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/api/companies/cc9f58f3-12f8-4532-9f5c-cc24e7068252/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
 "PUT /api/companies/cc9f58f3-12f8-4532-9f5c-cc24e7068252 HTTP/1.1" 500 65363
+Internal Server Error: /api/companies/
+Traceback (most recent call last):
+  File "/app/_apps/api/serializers.py", line 123, in get_company_data
+    response.raise_for_status()
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.polygon.io/v3/reference/tickers/TESLA?apiKey=vlYCGncIGYWd9SpZoBHMZ_RfzdGmYS66
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 501, in to_internal_value
+    validated_value = validate_method(validated_value)
+  File "/app/_apps/api/serializers.py", line 93, in validate_symbol
+    data = self.get_company_data(symbol_upper)
+  File "/app/_apps/api/serializers.py", line 127, in get_company_data
+    reponse_message = f"${ error_response['status '] }: ${ error_response['message'] }"
+KeyError: 'status '
+"POST /api/companies/ HTTP/1.1" 500 124123
+Internal Server Error: /api/companies/
+Traceback (most recent call last):
+  File "/app/_apps/api/serializers.py", line 123, in get_company_data
+    response.raise_for_status()
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.polygon.io/v3/reference/tickers/TESLA?apiKey=vlYCGncIGYWd9SpZoBHMZ_RfzdGmYS66
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 501, in to_internal_value
+    validated_value = validate_method(validated_value)
+  File "/app/_apps/api/serializers.py", line 93, in validate_symbol
+    data = self.get_company_data(symbol_upper)
+  File "/app/_apps/api/serializers.py", line 127, in get_company_data
+    reponse_message = f"${ error_response['status '] }: ${ error_response['message'] }"
+KeyError: 'status '
+"POST /api/companies/ HTTP/1.1" 500 124158
+Internal Server Error: /api/companies/
+Traceback (most recent call last):
+  File "/app/_apps/api/serializers.py", line 123, in get_company_data
+    response.raise_for_status()
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.polygon.io/v3/reference/tickers/TESLA?apiKey=vlYCGncIGYWd9SpZoBHMZ_RfzdGmYS66
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 501, in to_internal_value
+    validated_value = validate_method(validated_value)
+  File "/app/_apps/api/serializers.py", line 93, in validate_symbol
+    data = self.get_company_data(symbol_upper)
+  File "/app/_apps/api/serializers.py", line 127, in get_company_data
+    reponse_message = f"${ error_response.status }: ${ error_response.message }"
+AttributeError: 'dict' object has no attribute 'status'
+"POST /api/companies/ HTTP/1.1" 500 124401
+Internal Server Error: /api/companies/114fe9ee-abd5-4dd5-8942-9249b59ec7e0/
+Traceback (most recent call last):
+  File "/app/_apps/api/serializers.py", line 57, in get_time_serie
+    response.raise_for_status()
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://api.polygon.io/v2/aggs/ticker/JNJ/range/1/day/2024-08-02/2024-09-01?apiKey=vlYCGncIGYWd9SpZoBHMZ_RfzdGmYS66
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/_apps/api/views.py", line 57, in retrieve
+    return Response(serializer.data)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 571, in data
+    ret = super().data
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/root/.cache/pypoetry/virtualenvs/crud-backend-9TtSrW0h-py3.10/lib/python3.10/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+  File "/app/_apps/api/serializers.py", line 61, in get_time_serie
+    response_message = f"{error_response['status']}: {error_response['message']}"
+KeyError: 'message'
+"GET /api/companies/114fe9ee-abd5-4dd5-8942-9249b59ec7e0/ HTTP/1.1" 500 126438
