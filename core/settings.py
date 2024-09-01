@@ -134,4 +134,4 @@ class Prod(Common):
     Configuración específica para el entorno de producción.
     """
     ALLOWED_HOSTS = []
-    DEBUG = False  # Deshabilita el modo de depuración para producción
+    DEBUG = False 
