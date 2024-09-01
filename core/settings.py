@@ -120,12 +120,14 @@ class Common(Configuration):
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
 # Configuración para entornos de desarrollo
 class Dev(Common):
     """
     Configuración específica para el entorno de desarrollo.
     """
-    CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://flk-crud-frontend.up.railway.app',]
+    CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://flk-crud-frontend.up.railway.app', 'https://flk-crud-backend.up.railway.app/']
     ALLOWED_HOSTS = ['localhost', 'flk-crud-backend.up.railway.app']
     DEBUG = True  # Habilita el modo de depuración
 
@@ -134,6 +136,11 @@ class Prod(Common):
     """
     Configuración específica para el entorno de producción.
     """
-    CORS_ALLOWED_ORIGINS = ['https://flk-crud-frontend.up.railway.app',]
+    CORS_ALLOWED_ORIGINS = ['https://flk-crud-frontend.up.railway.app', 'https://flk-crud-backend.up.railway.app/']
     ALLOWED_HOSTS = ['flk-crud-backend.up.railway.app']
-    DEBUG = False 
+    DEBUG = True
+
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
